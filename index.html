@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> JS Slide Example </title>
+	<link rel="stylesheet" href="css/style.css">
+
+
+<script>
+function _(x){return document.getElementById(x);}
+var ba, bi=0, intrvl;
+var bca = [
+    '<h2>Slide Number 1</h2><p>Hello, good morning :)</p>',
+	'<h2>Slide Number 2</h2><p>How are you ?</p>',
+	'<h2>Slide Number 3</h2><p>What is your plan for today ?</p>',
+	'<h2>Slide Number 4</h2><p>Have a nice day... :) </p>'
+];
+function bubbles(bi){
+	_("bubblecontent").style.opacity = 0;
+	for(var i=0; i < ba.length; i++){
+		ba[i].style.background = "rgba(0,0,0,.1)";
+	}
+	ba[bi].style.background = "#999";
+	setTimeout(function(){
+		_("bubblecontent").innerHTML = bca[bi];
+
+		_("bubblecontent").style.opacity = 1;
+	}, 300);
+}
+
+function bubbleSlide(){
+	bi++; 
+	
+	if(bi == ba.length){
+		bi = 0;
+	}
+
+	bubbles(bi);
+}
+
+window.addEventListener("load", function(){
+
+	ba = _("bubbles").children;
+
+	intrvl = setInterval(bubbleSlide, 5000);
+});
+</script>
+</head>
+<body>
+
+<div id="bubblebox">
+  <div id="bubbles">
+    <div onclick="bubbles(0); clearInterval(intrvl);" style="background:#999;"></div>
+    <div onclick="bubbles(1); clearInterval(intrvl);"></div>
+    <div onclick="bubbles(2); clearInterval(intrvl);"></div>
+    <div onclick="bubbles(3); clearInterval(intrvl);"></div>
+  </div>
+  <div id="bubblecontent">
+    <h2>Slide Number 1</h2>
+    <p>Hello, good morning :)</p>
+  </div>
+</div>
+</body>
+</html>
